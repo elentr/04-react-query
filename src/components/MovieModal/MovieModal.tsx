@@ -25,14 +25,20 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
     };
   }, [onClose]);
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return createPortal(
     <div
       className={css.backdrop}
       role="dialog"
       aria-modal="true"
-      onClick={onClose}
+      onClick={handleBackdropClick}
     >
-      <div className={css.modal} onClick={e => e.stopPropagation()}>
+      <div className={css.modal}>
         <button
           className={css.closeButton}
           aria-label="Close modal"
